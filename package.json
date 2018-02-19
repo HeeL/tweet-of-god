@@ -4,7 +4,8 @@
   "description": "Tweet from @heel twitter account",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack-dev-server --config ./webpack/webpack.dev.config.js"
   },
   "babel": {
     "presets": [
