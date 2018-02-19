@@ -1,0 +1,23 @@
+{
+  "name": "tweet-of-god",
+  "version": "1.0.0",
+  "description": "Tweet from @heel twitter account",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/HeeL/tweet-of-god.git"
+  },
+  "keywords": [
+    "twitter",
+    "tweet"
+  ],
+  "author": "Sergii Paryzhskyi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/HeeL/tweet-of-god/issues"
+  },
+  "homepage": "https://github.com/HeeL/tweet-of-god#readme"
+}
