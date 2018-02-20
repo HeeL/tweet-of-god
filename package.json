@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "webpack-dev-server --config ./webpack/webpack.dev.config.js",
     "test": "jest",
-    "test:watch": "jest . --watch"
+    "pretest": "lint",
+    "test:watch": "jest . --watch",
+    "lint": "eslint ."
   },
   "jest": {
     "testRegex": "/test/unit/.*Spec\\.(js|jsx)$",
@@ -55,6 +57,11 @@
     "css-loader": "^0.28.9",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
+    "eslint": "^4.18.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.6.1",
     "jest": "^22.3.0",
     "less": "^3.0.1",
     "less-loader": "^4.0.5",
