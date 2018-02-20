@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "webpack-dev-server --config ./webpack/webpack.dev.config.js",
     "test": "jest",
-    "pretest": "lint",
+    "pretest": "npm run lint",
     "test:watch": "jest . --watch",
     "lint": "eslint ."
   },
