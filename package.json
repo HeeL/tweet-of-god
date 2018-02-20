@@ -9,7 +9,8 @@
     "test:watch": "jest . --watch"
   },
   "jest": {
-    "testRegex": "/test/unit/.*Spec\\.(js|jsx)$"
+    "testRegex": "/test/unit/.*Spec\\.(js|jsx)$",
+    "setupTestFrameworkScriptFile": "<rootDir>/test/unit/setup.js"
   },
   "babel": {
     "presets": [
