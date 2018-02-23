@@ -5,7 +5,7 @@ const parentDir = path.join(__dirname, '../');
 
 module.exports = {
     entry: [
-        path.join(parentDir, 'index.js'),
+        path.join(parentDir, 'index.jsx'),
     ],
     module: {
         loaders: [{
@@ -17,6 +17,9 @@ module.exports = {
             loaders: ['style-loader', 'css-loader', 'less-loader'],
         },
         ],
+    },
+    resolve: {
+        extensions: ['.js', '.jsx'],
     },
     output: {
         path: `${parentDir}/dist`,

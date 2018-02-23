@@ -2,7 +2,7 @@
   "name": "tweet-of-god",
   "version": "1.0.0",
   "description": "Tweet from @heel twitter account",
-  "main": "index.js",
+  "main": "index.jsx",
   "scripts": {
     "dev": "webpack-dev-server --config ./webpack/webpack.dev.config.js",
     "test": "jest",
