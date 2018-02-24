@@ -1,11 +1,9 @@
 require('webpack');
 const path = require('path');
 
-const parentDir = path.join(__dirname, '../');
-
 module.exports = {
     entry: [
-        path.join(parentDir, 'index.jsx'),
+        path.join(__dirname, 'index.jsx'),
     ],
     module: {
         loaders: [{
@@ -22,11 +20,11 @@ module.exports = {
         extensions: ['.js', '.jsx'],
     },
     output: {
-        path: `${parentDir}/dist`,
+        path: `${__dirname}/build`,
         filename: 'bundle.js',
     },
     devServer: {
-        contentBase: parentDir,
+        contentBase: __dirname,
         historyApiFallback: true,
     },
 };
