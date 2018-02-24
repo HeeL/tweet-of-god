@@ -4,7 +4,11 @@
   "description": "Tweet from @heel twitter account",
   "main": "index.jsx",
   "scripts": {
-    "dev": "webpack-dev-server --config ./webpack/webpack.dev.config.js",
+    "start": "node server",
+    "dev": "node server",
+    "build": "rm -rf ./build && mkdir build && cp index.html build",
+    "prestart": "npm run build && webpack --progress --colors -p",
+    "predev": "npm run build && webpack --progress --colors",
     "test": "jest",
     "pretest": "npm run lint",
     "test:watch": "jest . --watch",
