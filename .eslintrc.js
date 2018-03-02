@@ -4,7 +4,8 @@ module.exports = {
         "comma-dangle": 0,
         "arrow-parens": 0,
         indent: ["error", 4],
-        "react/jsx-indent": ["error", 4]
+        "react/jsx-indent": ["error", 4],
+        "react/jsx-indent-props": ["error", 4]
     },
     "globals": {
         "it": true,
