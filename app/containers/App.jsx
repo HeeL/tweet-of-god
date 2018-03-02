@@ -1,4 +1,13 @@
 import React, { Component } from 'react';
+import glamorous from 'glamorous';
+
+const Form = glamorous.form({
+    width: '100%'
+});
+
+const Input = glamorous.input({
+    width: '100%'
+});
 
 export default class App extends Component {
     constructor(args) {
@@ -19,20 +28,20 @@ export default class App extends Component {
 
     render() {
         return (
-            <form>
-                <input
+            <Form>
+                <Input
                     type="text"
                     name="tweet"
                     onChange={this.updateTweetText}
                     value={this.state.tweetText}
                 />
 
-                <input
+                <Input
                     type="submit"
                     onClick={this.sendTweet}
                     value="Tweet It!"
                 />
-            </form>
+            </Form>
         );
     }
 }
