@@ -1,6 +1,6 @@
 # tweet-of-god
 
-Post your tweets at twitter.com/heel, which has 9k+ followers.
+Post your tweets at [twitter.com/heel](http://twitter.com/heel), which has 9k+ followers.
 
 # Run locally
 
