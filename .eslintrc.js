@@ -12,5 +12,6 @@ module.exports = {
         "describe": true,
         "jest": true,
         "expect": true,
+        "window": true
     }
 };

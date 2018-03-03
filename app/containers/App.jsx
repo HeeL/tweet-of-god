@@ -11,6 +11,7 @@ export default class App extends Component {
 
     sendTweet(event) {
         event.preventDefault();
+        window.location.href = 'https://twitter.com/heel';
         console.log(this.state.tweetText);
     }
 
