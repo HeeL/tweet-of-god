@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Input, Form } from './styles';
+import { Input, Form, Submit } from './styles';
 
 export default class App extends Component {
     constructor(args) {
@@ -24,14 +24,15 @@ export default class App extends Component {
                 <Input
                     type="text"
                     name="tweet"
+                    maxlength="128"
                     onChange={this.updateTweetText}
                     value={this.state.tweetText}
                 />
 
-                <Input
+                <Submit
                     type="submit"
                     onClick={this.sendTweet}
-                    value="Tweet It!"
+                    value="Tweet it"
                 />
             </Form>
         );
