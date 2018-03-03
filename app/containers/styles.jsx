@@ -13,6 +13,11 @@ export const Input = glamorous.input({
     fontSize: '18px'
 });
 
+export const Counter = glamorous.span({
+    color: '#999',
+    fontSize: '11px'
+});
+
 export const Submit = glamorous.input({
     backgroundImage: 'linear-gradient(to bottom, #3498db, #2980b9)',
     fontSize: '20px',

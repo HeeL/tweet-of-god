@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Input, Form, Submit } from './styles';
+import { Input, Form, Submit, Counter } from './styles';
 
 export default class App extends Component {
     constructor(args) {
@@ -25,7 +25,7 @@ export default class App extends Component {
                 <Input
                     type="text"
                     name="tweet"
-                    maxlength="128"
+                    maxLength="128"
                     onChange={this.updateTweetText}
                     value={this.state.tweetText}
                 />
@@ -35,6 +35,10 @@ export default class App extends Component {
                     onClick={this.sendTweet}
                     value="Tweet it"
                 />
+
+                <Counter>
+                    {Math.abs(128 - this.state.tweetText.length)}
+                </Counter>
             </Form>
         );
     }
