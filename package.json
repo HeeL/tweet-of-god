@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server",
     "dev": "node server",
-    "build": "rm -rf ./build && mkdir build && cp index.html build",
+    "build": "rm -rf ./build && mkdir build && cp index.html build && cp -R app/assets build",
     "prestart": "npm run build && webpack --progress --colors -p",
     "predev": "npm run build && webpack --progress --colors",
     "test": "jest",
