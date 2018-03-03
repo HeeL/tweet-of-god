@@ -22,6 +22,7 @@ export default class App extends Component {
     render() {
         return (
             <Form>
+                <img src="/assets/logo.png" alt="Tweet Of God" />
                 <Input
                     type="text"
                     name="tweet"
