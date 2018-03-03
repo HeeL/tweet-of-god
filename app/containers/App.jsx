@@ -1,13 +1,5 @@
 import React, { Component } from 'react';
-import glamorous from 'glamorous';
-
-const Form = glamorous.form({
-    width: '100%'
-});
-
-const Input = glamorous.input({
-    width: '100%'
-});
+import { Input, Form } from './styles';
 
 export default class App extends Component {
     constructor(args) {
