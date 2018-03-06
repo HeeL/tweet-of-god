@@ -4,8 +4,8 @@ import { Input, Form, Submit, Counter } from './styles';
 const TWEET_MAX_LENGTH = 128;
 
 export default class App extends Component {
-    constructor(args) {
-        super(...args);
+    constructor(props) {
+        super(props);
         this.state = { tweetText: '' };
         this.updateTweetText = this.updateTweetText.bind(this);
         this.sendTweet = this.sendTweet.bind(this);
