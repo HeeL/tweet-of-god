@@ -1,6 +1,7 @@
 const express = require('express');
 const sendTweet = require('./sendTweet');
 const createHealthcheckMiddleware = require('healthcheck-ping');
+require('dotenv').config();
 
 const port = process.env.PORT || 3000;
 const app = express();
