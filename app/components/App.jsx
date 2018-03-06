@@ -13,8 +13,11 @@ export default class App extends Component {
 
     sendTweet(event) {
         event.preventDefault();
-        window.location.href = 'https://twitter.com/heel';
-        console.log(this.state.tweetText);
+        const tweetText = encodeURIComponent(this.state.tweetText);
+        this.props.fetch(`/sendTweet?tweetText=${tweetText}`)
+            .then(() => {
+                this.props.window.location.href = 'https://twitter.com/heel';
+            });
     }
 
     updateTweetText(event) {

@@ -31,6 +31,52 @@ describe('App', () => {
         expect(submit).toHaveLength(1);
     });
 
+    describe('Submit', () => {
+        const defaultEvent = { preventDefault() {} };
+
+        it('prevents default submit', () => {
+            const fetch = () => Promise.resolve();
+            const window = { location: {} };
+            const event = { preventDefault: jest.fn() };
+            const app = shallow(<App window={window} fetch={fetch} />);
+            app.find(Submit).simulate('click', event);
+
+            expect(event.preventDefault).toHaveBeenCalledTimes(1);
+        });
+
+        it('sends request to the /sendTweet route with text', () => {
+            const fetch = jest.fn(() => Promise.resolve());
+            const window = { location: {} };
+            const app = shallow(<App window={window} fetch={fetch} />);
+            app.find(Submit).simulate('click', defaultEvent);
+
+            expect(fetch).toHaveBeenCalledTimes(1);
+            expect(fetch).toHaveBeenCalledWith('/sendTweet?tweetText=');
+        });
+
+        it('sends input text with request', () => {
+            const fetch = jest.fn(() => Promise.resolve());
+            const window = { location: {} };
+            const app = shallow(<App window={window} fetch={fetch} />);
+            const event = { target: { value: 'foobar' } };
+            app.find(Input).simulate('change', event);
+            app.find(Submit).simulate('click', defaultEvent);
+
+            expect(fetch).toHaveBeenCalledWith('/sendTweet?tweetText=foobar');
+        });
+
+        it('encodes input text before send', () => {
+            const fetch = jest.fn(() => Promise.resolve());
+            const window = { location: {} };
+            const app = shallow(<App window={window} fetch={fetch} />);
+            const event = { target: { value: 'foo bar' } };
+            app.find(Input).simulate('change', event);
+            app.find(Submit).simulate('click', defaultEvent);
+
+            expect(fetch).toHaveBeenCalledWith('/sendTweet?tweetText=foo%20bar');
+        });
+    });
+
     describe('Counter', () => {
         it('renders', () => {
             const app = shallow(<App />);
