@@ -13,6 +13,16 @@ export const Input = glamorous.input({
     fontSize: '18px'
 });
 
+export const ErrorMessage = glamorous.div({
+    width: '100%',
+    color: '#D8000C',
+    backgroundColor: '#FFD2D2',
+    margin: '10px 22px',
+    verticalAlign: 'middle',
+    textAlign: 'center',
+    padding: '7px'
+});
+
 export const Counter = glamorous.span({
     color: '#999',
     fontSize: '11px'
