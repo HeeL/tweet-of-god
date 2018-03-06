@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import App from '../../../app/components/App';
-import { Input, Submit, Counter } from '../../../app/components/styles';
+import { Input, Submit, Counter, ErrorMessage } from '../../../app/components/styles';
 
 describe('App', () => {
     it('renders', () => {
@@ -74,6 +74,12 @@ describe('App', () => {
             app.find(Submit).simulate('click', defaultEvent);
 
             expect(fetch).toHaveBeenCalledWith('/sendTweet?tweetText=foo%20bar');
+        });
+
+        it('shows NO error in initial state', () => {
+            const app = shallow(<App />);
+
+            expect(app.find(ErrorMessage)).toHaveLength(0);
         });
     });
 

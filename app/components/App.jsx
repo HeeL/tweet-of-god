@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import { Input, Form, Submit, Counter } from './styles';
+import { Input, Form, Submit, Counter, ErrorMessage } from './styles';
 
 const TWEET_MAX_LENGTH = 128;
+
+const renderErrorIfItExists = error => (error === '' ? null : <ErrorMessage>{error}</ErrorMessage>);
 
 export default class App extends Component {
     constructor(props) {
         super(props);
-        this.state = { tweetText: '' };
+        this.state = { tweetText: '', errorText: '' };
         this.updateTweetText = this.updateTweetText.bind(this);
         this.sendTweet = this.sendTweet.bind(this);
     }
@@ -22,7 +24,8 @@ export default class App extends Component {
             })
             .then(() => {
                 this.props.window.location.href = 'https://twitter.com/heel';
-            });
+            })
+            .catch((error) => this.setState({ errorText: error.message }));
     }
 
     updateTweetText(event) {
@@ -33,6 +36,7 @@ export default class App extends Component {
         return (
             <Form>
                 <img src="/assets/logo.png" alt="Tweet Of God" />
+                { renderErrorIfItExists(this.state.errorText) }
                 <Input
                     type="text"
                     name="tweet"
