@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import App from '../../../app/containers/App';
-import { Input, Submit, Counter } from '../../../app/containers/styles';
+import App from '../../../app/components/App';
+import { Input, Submit, Counter } from '../../../app/components/styles';
 
 describe('App', () => {
     it('renders', () => {
