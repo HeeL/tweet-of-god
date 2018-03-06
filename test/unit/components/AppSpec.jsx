@@ -21,7 +21,7 @@ describe('App', () => {
         const app = shallow(<App />);
         const input = app.find(Input);
 
-        expect(input.props()).toHaveProperty('maxLength', '128');
+        expect(input.props()).toHaveProperty('maxLength', 128);
     });
 
     it('contains submit button', () => {

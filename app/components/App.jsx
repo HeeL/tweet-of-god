@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Input, Form, Submit, Counter } from './styles';
 
+const TWEET_MAX_LENGTH = 128;
+
 export default class App extends Component {
     constructor(args) {
         super(...args);
@@ -26,7 +28,7 @@ export default class App extends Component {
                 <Input
                     type="text"
                     name="tweet"
-                    maxLength="128"
+                    maxLength={TWEET_MAX_LENGTH}
                     onChange={this.updateTweetText}
                     value={this.state.tweetText}
                 />
@@ -38,7 +40,7 @@ export default class App extends Component {
                 />
 
                 <Counter>
-                    {Math.abs(128 - this.state.tweetText.length)}
+                    {Math.abs(TWEET_MAX_LENGTH - this.state.tweetText.length)}
                 </Counter>
             </Form>
         );
