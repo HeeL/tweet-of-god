@@ -36,9 +36,9 @@ describe('App', () => {
 
         it('prevents default submit', () => {
             const fetch = () => Promise.resolve();
-            const window = { location: {} };
+            const window = { location: {}, fetch };
             const event = { preventDefault: jest.fn() };
-            const app = shallow(<App window={window} fetch={fetch} />);
+            const app = shallow(<App window={window} />);
             app.find(Submit).simulate('click', event);
 
             expect(event.preventDefault).toHaveBeenCalledTimes(1);
@@ -46,8 +46,8 @@ describe('App', () => {
 
         it('sends request to the /sendTweet route with text', () => {
             const fetch = jest.fn(() => Promise.resolve());
-            const window = { location: {} };
-            const app = shallow(<App window={window} fetch={fetch} />);
+            const window = { location: {}, fetch };
+            const app = shallow(<App window={window} />);
             app.find(Submit).simulate('click', defaultEvent);
 
             expect(fetch).toHaveBeenCalledTimes(1);
@@ -56,8 +56,8 @@ describe('App', () => {
 
         it('sends input text with request', () => {
             const fetch = jest.fn(() => Promise.resolve());
-            const window = { location: {} };
-            const app = shallow(<App window={window} fetch={fetch} />);
+            const window = { location: {}, fetch };
+            const app = shallow(<App window={window} />);
             const event = { target: { value: 'foobar' } };
             app.find(Input).simulate('change', event);
             app.find(Submit).simulate('click', defaultEvent);
@@ -67,8 +67,8 @@ describe('App', () => {
 
         it('encodes input text before send', () => {
             const fetch = jest.fn(() => Promise.resolve());
-            const window = { location: {} };
-            const app = shallow(<App window={window} fetch={fetch} />);
+            const window = { location: {}, fetch };
+            const app = shallow(<App window={window} />);
             const event = { target: { value: 'foo bar' } };
             app.find(Input).simulate('change', event);
             app.find(Submit).simulate('click', defaultEvent);

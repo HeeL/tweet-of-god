@@ -14,7 +14,7 @@ export default class App extends Component {
     sendTweet(event) {
         event.preventDefault();
         const tweetText = encodeURIComponent(this.state.tweetText);
-        this.props.fetch(`/sendTweet?tweetText=${tweetText}`)
+        this.props.window.fetch(`/sendTweet?tweetText=${tweetText}`)
             .then(() => {
                 this.props.window.location.href = 'https://twitter.com/heel';
             });
