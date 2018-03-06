@@ -25,7 +25,8 @@ export const ErrorMessage = glamorous.div({
 
 export const Counter = glamorous.span({
     color: '#999',
-    fontSize: '11px'
+    fontSize: '11px',
+    marginLeft: '4px'
 });
 
 export const Submit = glamorous.input({
