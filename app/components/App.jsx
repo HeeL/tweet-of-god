@@ -15,6 +15,11 @@ export default class App extends Component {
         event.preventDefault();
         const tweetText = encodeURIComponent(this.state.tweetText);
         this.props.window.fetch(`/sendTweet?tweetText=${tweetText}`)
+            .then((response) => {
+                if (response.status >= 300) {
+                    throw new Error(`Bad response from server: ${response.status}. ${response.statusText}`);
+                }
+            })
             .then(() => {
                 this.props.window.location.href = 'https://twitter.com/heel';
             });
