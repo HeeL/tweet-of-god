@@ -1,8 +1,8 @@
 import sendTweet from '../../../server/sendTweet';
 
 describe('sendTweet', () => {
-    it('response in json with status ok', () => {
-        const req = { query: {} };
+    it('responses in json format with status ok', () => {
+        const req = { query: { tweetText: 'foozzz' } };
         const res = { json: jest.fn() };
         sendTweet(req, res);
 
@@ -11,7 +11,7 @@ describe('sendTweet', () => {
         expect(status).toEqual('ok');
     });
 
-    it('response contains requested tweetText with hashtag at the end', () => {
+    it('responses with requested tweetText and hashtag at the end', () => {
         const req = { query: { tweetText: 'foo bar' } };
         const res = { json: jest.fn() };
         sendTweet(req, res);
@@ -19,5 +19,41 @@ describe('sendTweet', () => {
         expect(res.json).toHaveBeenCalledTimes(1);
         const { tweetText } = res.json.mock.calls[0][0];
         expect(tweetText).toEqual('foo bar #tweetofgod');
+    });
+
+    it('removes spaces from the beginning and from the end of the tweet', () => {
+        const req = { query: { tweetText: '            zzz bar              ' } };
+        const res = { json: jest.fn() };
+        sendTweet(req, res);
+
+        expect(res.json).toHaveBeenCalledTimes(1);
+        const { tweetText } = res.json.mock.calls[0][0];
+        expect(tweetText).toEqual('zzz bar #tweetofgod');
+    });
+
+    it('responses with 400 and error message if requested text is 2 characters', () => {
+        const req = { query: { tweetText: 'fo' } };
+        const res = { json: jest.fn(), status: jest.fn() };
+        sendTweet(req, res);
+
+        expect(res.status).toHaveBeenCalledTimes(1);
+        expect(res.status).toHaveBeenCalledWith(400);
+
+        expect(res.json).toHaveBeenCalledTimes(1);
+        const { errorMessage } = res.json.mock.calls[0][0];
+        expect(errorMessage).toEqual('This tweet is way too short');
+    });
+
+    it('ignores spaces at the beginning and the end of the tweetText', () => {
+        const req = { query: { tweetText: '       fo      ' } };
+        const res = { json: jest.fn(), status: jest.fn() };
+        sendTweet(req, res);
+
+        expect(res.status).toHaveBeenCalledTimes(1);
+        expect(res.status).toHaveBeenCalledWith(400);
+
+        expect(res.json).toHaveBeenCalledTimes(1);
+        const { errorMessage } = res.json.mock.calls[0][0];
+        expect(errorMessage).toEqual('This tweet is way too short');
     });
 });
