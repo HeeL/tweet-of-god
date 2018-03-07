@@ -8,13 +8,18 @@ const renderErrorIfItExists = error => (error === '' ? null : <ErrorMessage>{err
 export default class App extends Component {
     constructor(props) {
         super(props);
-        this.state = { tweetText: '', errorText: '' };
+        this.state = { tweetText: '', errorText: '', loading: false };
         this.updateTweetText = this.updateTweetText.bind(this);
         this.sendTweet = this.sendTweet.bind(this);
     }
 
+    setLoadingState(loading) {
+        this.setState({ loading });
+    }
+
     sendTweet(event) {
         event.preventDefault();
+        this.setLoadingState(true);
         const tweetText = encodeURIComponent(this.state.tweetText);
         this.props.window.fetch(`/sendTweet?tweetText=${tweetText}`)
             .then((response) => {
@@ -25,7 +30,8 @@ export default class App extends Component {
             .then(() => {
                 this.props.window.location.href = 'https://twitter.com/heel';
             })
-            .catch((error) => this.setState({ errorText: error.message }));
+            .catch((error) => this.setState({ errorText: error.message }))
+            .then(this.setLoadingState.bind(this, false));
     }
 
     updateTweetText(event) {
@@ -33,23 +39,28 @@ export default class App extends Component {
     }
 
     render() {
+        const disabled = this.state.loading ? true : undefined;
+        const inputProps = {
+            type: 'text',
+            name: 'tweet',
+            maxLength: TWEET_MAX_LENGTH,
+            onChange: this.updateTweetText,
+            value: this.state.tweetText,
+            disabled
+        };
+        const submitProps = {
+            type: 'submit',
+            onClick: this.sendTweet,
+            value: 'Tweet it',
+            disabled
+        };
+
         return (
             <Form>
                 <img src="/assets/logo.png" alt="Tweet Of God" />
                 { renderErrorIfItExists(this.state.errorText) }
-                <Input
-                    type="text"
-                    name="tweet"
-                    maxLength={TWEET_MAX_LENGTH}
-                    onChange={this.updateTweetText}
-                    value={this.state.tweetText}
-                />
-
-                <Submit
-                    type="submit"
-                    onClick={this.sendTweet}
-                    value="Tweet it"
-                />
+                <Input {...inputProps} />
+                <Submit {...submitProps} />
 
                 <Counter>
                     {Math.abs(TWEET_MAX_LENGTH - this.state.tweetText.length)}

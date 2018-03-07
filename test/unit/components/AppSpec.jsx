@@ -81,6 +81,31 @@ describe('App', () => {
 
             expect(app.find(ErrorMessage)).toHaveLength(0);
         });
+
+        it('has form fields enabled in initial state', () => {
+            const app = shallow(<App />);
+
+            expect(app.find(Input).prop('disabled')).toBeUndefined();
+            expect(app.find(Submit).prop('disabled')).toBeUndefined();
+        });
+
+        it('has form fields enabled after submission', () => {
+            const fetch = jest.fn(() => Promise.resolve({ status: 200 }));
+            const window = { location: {}, fetch };
+            const app = shallow(<App window={window} />);
+
+            expect(app.find(Input).prop('disabled')).toBeUndefined();
+            expect(app.find(Submit).prop('disabled')).toBeUndefined();
+        });
+
+        it('has form fields enabled after failure', () => {
+            const fetch = jest.fn(() => Promise.rejects());
+            const window = { location: {}, fetch };
+            const app = shallow(<App window={window} />);
+
+            expect(app.find(Input).prop('disabled')).toBeUndefined();
+            expect(app.find(Submit).prop('disabled')).toBeUndefined();
+        });
     });
 
     describe('Counter', () => {
