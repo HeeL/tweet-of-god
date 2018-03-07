@@ -5,16 +5,32 @@ const TWEET_MAX_LENGTH = 128;
 
 const renderErrorIfItExists = error => (error === '' ? null : <ErrorMessage>{error}</ErrorMessage>);
 
+const checkResponseCode = response => {
+    if (response.status >= 300) {
+        throw new Error(`Bad response from server: ${response.status}. ${response.statusText}`);
+    }
+};
+
 export default class App extends Component {
     constructor(props) {
         super(props);
-        this.state = { tweetText: '', errorText: '', loading: false };
+        this.state = { tweetText: '', errorMessage: '', loading: false };
         this.updateTweetText = this.updateTweetText.bind(this);
         this.sendTweet = this.sendTweet.bind(this);
+        this.redirectToTwitter = this.redirectToTwitter.bind(this);
+        this.setErrorMessage = this.setErrorMessage.bind(this);
     }
 
     setLoadingState(loading) {
         this.setState({ loading });
+    }
+
+    setErrorMessage(error) {
+        this.setState({ errorMessage: error.message });
+    }
+
+    redirectToTwitter() {
+        this.props.window.location.href = 'https://twitter.com/heel';
     }
 
     sendTweet(event) {
@@ -22,15 +38,9 @@ export default class App extends Component {
         this.setLoadingState(true);
         const tweetText = encodeURIComponent(this.state.tweetText);
         this.props.window.fetch(`/sendTweet?tweetText=${tweetText}`)
-            .then((response) => {
-                if (response.status >= 300) {
-                    throw new Error(`Bad response from server: ${response.status}. ${response.statusText}`);
-                }
-            })
-            .then(() => {
-                this.props.window.location.href = 'https://twitter.com/heel';
-            })
-            .catch((error) => this.setState({ errorText: error.message }))
+            .then(checkResponseCode)
+            .then(this.redirectToTwitter)
+            .catch(this.setErrorMessage)
             .then(this.setLoadingState.bind(this, false));
     }
 
@@ -58,7 +68,7 @@ export default class App extends Component {
         return (
             <Form>
                 <img src="/assets/logo.png" alt="Tweet Of God" />
-                { renderErrorIfItExists(this.state.errorText) }
+                { renderErrorIfItExists(this.state.errorMessage) }
                 <Input {...inputProps} />
                 <Submit {...submitProps} />
 
