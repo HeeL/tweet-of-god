@@ -33,27 +33,21 @@ describe('sendTweet', () => {
 
     it('responses with 400 and error message if requested text is 2 characters', () => {
         const req = { query: { tweetText: 'fo' } };
-        const res = { json: jest.fn(), status: jest.fn() };
+        const res = { json: jest.fn(), status: jest.fn().mockReturnValue({ end: () => {} }) };
         sendTweet(req, res);
 
         expect(res.status).toHaveBeenCalledTimes(1);
         expect(res.status).toHaveBeenCalledWith(400);
-
-        expect(res.json).toHaveBeenCalledTimes(1);
-        const { errorMessage } = res.json.mock.calls[0][0];
-        expect(errorMessage).toEqual('This tweet is way too short');
+        expect(res.statusMessage).toEqual('This tweet is way too short');
     });
 
     it('ignores spaces at the beginning and the end of the tweetText', () => {
         const req = { query: { tweetText: '       fo      ' } };
-        const res = { json: jest.fn(), status: jest.fn() };
+        const res = { json: jest.fn(), status: jest.fn().mockReturnValue({ end: () => {} }) };
         sendTweet(req, res);
 
         expect(res.status).toHaveBeenCalledTimes(1);
         expect(res.status).toHaveBeenCalledWith(400);
-
-        expect(res.json).toHaveBeenCalledTimes(1);
-        const { errorMessage } = res.json.mock.calls[0][0];
-        expect(errorMessage).toEqual('This tweet is way too short');
+        expect(res.statusMessage).toEqual('This tweet is way too short');
     });
 });

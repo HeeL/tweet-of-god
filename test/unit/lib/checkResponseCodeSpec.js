@@ -2,14 +2,14 @@ import checkResponseCode from '../../../lib/checkResponseCode';
 
 describe('checkResponseCode', () => {
     it('throws on 404 response code', () => {
-        const expectedError = 'Bad response from server: 404. foobar';
+        const expectedError = 'Error 404: foobar';
         const response = { status: 404, statusText: 'foobar' };
 
         expect(checkResponseCode.bind(null, response)).toThrowError(expectedError);
     });
 
     it('throws on 300 response code', () => {
-        const expectedError = 'Bad response from server: 300. xxx';
+        const expectedError = 'Error 300: xxx';
         const response = { status: 300, statusText: 'xxx' };
 
         expect(checkResponseCode.bind(null, response)).toThrowError(expectedError);
