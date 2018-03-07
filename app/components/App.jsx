@@ -1,15 +1,10 @@
 import React, { Component } from 'react';
 import { Input, Form, Submit, Counter, ErrorMessage } from './styles';
+import checkResponseCode from '../../lib/checkResponseCode';
 
 const TWEET_MAX_LENGTH = 128;
 
 const renderErrorIfItExists = error => (error === '' ? null : <ErrorMessage>{error}</ErrorMessage>);
-
-const checkResponseCode = response => {
-    if (response.status >= 300) {
-        throw new Error(`Bad response from server: ${response.status}. ${response.statusText}`);
-    }
-};
 
 export default class App extends Component {
     constructor(props) {
