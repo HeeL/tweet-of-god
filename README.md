@@ -1,8 +1,8 @@
 # tweet-of-god
 
-![Logo](app/assets/logo.png "Logo")
+[![Logo](app/assets/logo.png "Logo")](https://protected-wave-69058.herokuapp.com/)
 
-Post your tweets at [twitter.com/heel](http://twitter.com/heel), which has 9k+ followers.
+Post your tweets at [twitter.com/heel](http://twitter.com/heel), which has 9k+ followers. Here is a [hosted version](https://protected-wave-69058.herokuapp.com/) of this beauty, you can try it out.
 
 ## How it Works
 
