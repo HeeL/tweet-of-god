@@ -20,7 +20,7 @@ describe('TwitterClient', () => {
             access_token: 'foo test 3',
             access_token_secret: 'zzz bar 4',
             consumer_key: 'foo 1',
-            consumer_secret: 'foo 1'
+            consumer_secret: 'foo nzzz 2'
         };
         // eslint-disable-next-line no-new
         new TwitterClient(clientStub);
