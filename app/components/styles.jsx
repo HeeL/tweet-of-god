@@ -13,16 +13,6 @@ export const Input = glamorous.input({
     fontSize: '18px'
 });
 
-export const ErrorMessage = glamorous.div({
-    width: '100%',
-    color: '#D8000C',
-    backgroundColor: '#FFD2D2',
-    margin: '10px 22px',
-    verticalAlign: 'middle',
-    textAlign: 'center',
-    padding: '7px'
-});
-
 export const Submit = glamorous.input({
     backgroundImage: 'linear-gradient(to bottom, #3498db, #2980b9)',
     fontSize: '20px',

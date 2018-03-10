@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import Counter from './Counter';
 import Logo from './Logo';
+import Error from './Error';
 import checkResponseCode from '../../lib/checkResponseCode';
-import { Input, Form, Submit, ErrorMessage } from './styles';
+import { Input, Form, Submit } from './styles';
 import { TWEET_MAX_LENGTH } from '../config.json';
-
-const renderErrorIfItExists = error => (error === '' ? null : <ErrorMessage>{error}</ErrorMessage>);
 
 export default class App extends Component {
     constructor(props) {
@@ -64,10 +63,9 @@ export default class App extends Component {
         return (
             <Form>
                 <Logo />
-                { renderErrorIfItExists(this.state.errorMessage) }
+                <Error message={this.state.errorMessage} />
                 <Input {...inputProps} />
                 <Submit {...submitProps} />
-
                 <Counter currentTextLength={this.state.tweetText.length} />
             </Form>
         );

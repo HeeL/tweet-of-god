@@ -3,7 +3,8 @@ import { shallow } from 'enzyme';
 import App from '../../../app/components/App';
 import Counter from '../../../app/components/Counter';
 import Logo from '../../../app/components/Logo';
-import { Input, Submit, ErrorMessage } from '../../../app/components/styles';
+import Error from '../../../app/components/Error';
+import { Input, Submit } from '../../../app/components/styles';
 
 describe('App', () => {
     it('renders', () => {
@@ -87,8 +88,9 @@ describe('App', () => {
 
         it('shows NO error in initial state', () => {
             const app = shallow(<App />);
+            const error = app.find(Error);
 
-            expect(app.find(ErrorMessage)).toHaveLength(0);
+            expect(error.prop('message')).toEqual('');
         });
 
         it('has form fields enabled in initial state', () => {
