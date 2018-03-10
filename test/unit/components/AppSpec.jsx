@@ -2,6 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import App from '../../../app/components/App';
 import Counter from '../../../app/components/Counter';
+import Logo from '../../../app/components/Logo';
 import { Input, Submit, ErrorMessage } from '../../../app/components/styles';
 
 describe('App', () => {
@@ -30,6 +31,13 @@ describe('App', () => {
         const submit = app.find(Submit);
 
         expect(submit).toHaveLength(1);
+    });
+
+    it('renders logo', () => {
+        const app = shallow(<App />);
+        const logo = app.find(Logo);
+
+        expect(logo).toHaveLength(1);
     });
 
     describe('Submit', () => {

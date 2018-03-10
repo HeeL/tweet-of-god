@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Counter from './Counter';
+import Logo from './Logo';
 import checkResponseCode from '../../lib/checkResponseCode';
 import { Input, Form, Submit, ErrorMessage } from './styles';
 import { TWEET_MAX_LENGTH } from '../config.json';
@@ -62,7 +63,7 @@ export default class App extends Component {
 
         return (
             <Form>
-                <img src="/assets/logo.png" alt="Tweet Of God" />
+                <Logo />
                 { renderErrorIfItExists(this.state.errorMessage) }
                 <Input {...inputProps} />
                 <Submit {...submitProps} />
