@@ -23,12 +23,6 @@ export const ErrorMessage = glamorous.div({
     padding: '7px'
 });
 
-export const Counter = glamorous.span({
-    color: '#999',
-    fontSize: '11px',
-    marginLeft: '4px'
-});
-
 export const Submit = glamorous.input({
     backgroundImage: 'linear-gradient(to bottom, #3498db, #2980b9)',
     fontSize: '20px',

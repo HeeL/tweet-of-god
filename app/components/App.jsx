@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Input, Form, Submit, Counter, ErrorMessage } from './styles';
+import Counter from './Counter';
 import checkResponseCode from '../../lib/checkResponseCode';
-
-const TWEET_MAX_LENGTH = 128;
+import { Input, Form, Submit, ErrorMessage } from './styles';
+import { TWEET_MAX_LENGTH } from '../config.json';
 
 const renderErrorIfItExists = error => (error === '' ? null : <ErrorMessage>{error}</ErrorMessage>);
 
@@ -67,9 +67,7 @@ export default class App extends Component {
                 <Input {...inputProps} />
                 <Submit {...submitProps} />
 
-                <Counter>
-                    {Math.abs(TWEET_MAX_LENGTH - this.state.tweetText.length)}
-                </Counter>
+                <Counter currentTextLength={this.state.tweetText.length} />
             </Form>
         );
     }

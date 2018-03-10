@@ -1,7 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import App from '../../../app/components/App';
-import { Input, Submit, Counter, ErrorMessage } from '../../../app/components/styles';
+import Counter from '../../../app/components/Counter';
+import { Input, Submit, ErrorMessage } from '../../../app/components/styles';
 
 describe('App', () => {
     it('renders', () => {
@@ -116,29 +117,21 @@ describe('App', () => {
             expect(counter).toHaveLength(1);
         });
 
-        it('shows value 128 initially', () => {
+        it('recieves 0 for currentTextLength prop initially', () => {
             const app = shallow(<App />);
-            const counter = app.find(Counter).dive();
+            const counter = app.find(Counter);
 
-            expect(counter.text()).toEqual('128');
+            expect(counter.prop('currentTextLength')).toEqual(0);
         });
 
-        it('shows value 120 when 8 chars were entered', () => {
+        it('recieves text length for currentTextLength prop', () => {
             const app = shallow(<App />);
             const input = app.find(Input);
-            input.simulate('change', { target: { value: 'a'.repeat(8) } });
-            const counter = app.find(Counter).dive();
+            const textLength = 8;
+            input.simulate('change', { target: { value: 'a'.repeat(textLength) } });
+            const counter = app.find(Counter);
 
-            expect(counter.text()).toEqual('120');
-        });
-
-        it('shows value 0 when 128 chars were entered', () => {
-            const app = shallow(<App />);
-            const input = app.find(Input);
-            input.simulate('change', { target: { value: 'b'.repeat(128) } });
-            const counter = app.find(Counter).dive();
-
-            expect(counter.text()).toEqual('0');
+            expect(counter.prop('currentTextLength')).toEqual(8);
         });
     });
 });
