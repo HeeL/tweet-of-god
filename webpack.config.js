@@ -6,10 +6,12 @@ module.exports = {
         path.join(__dirname, 'index.jsx'),
     ],
     module: {
-        loaders: [{
+        rules: [{
             test: /\.(js|jsx)$/,
             exclude: /node_modules/,
-            loader: 'babel-loader',
+            use: [{
+                loader: 'babel-loader'
+            }],
         }
         ],
     },
@@ -22,6 +24,5 @@ module.exports = {
     },
     devServer: {
         contentBase: __dirname,
-        historyApiFallback: true,
     },
 };
